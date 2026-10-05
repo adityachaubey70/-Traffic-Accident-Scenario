@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traffic Accident Reporting System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <h1>🚦 Traffic Accident Reporting System</h1>
+  <div class="row" id="bar" hidden>
+    <span id="me"></span>
+    <label class="inline"><input type="checkbox" id="sim"> Simulate offline</label>
+    <span id="net" class="b"></span>
+    <button id="out">Log out</button>
+  </div>
+</header>
+
+<main>
+  <section id="login" class="card">
+    <label>Username<input id="u" autocomplete="username"></label>
+    <label>Password<input id="p" type="password" autocomplete="current-password"></label>
+    <button class="pri" id="loginBtn">Log in</button>
+    <p class="mu">Demo accounts: admin / admin123 &nbsp;·&nbsp; user1 / user123 &nbsp;·&nbsp; user2 / user123</p>
+  </section>
+
+  <div id="app" hidden>
+    <nav class="row">
+      <button data-t="rep" class="on">Report</button>
+      <button data-t="list">Reports</button>
+      <button data-t="aud">Audit log</button>
+    </nav>
+
+    <section id="rep"><div class="card">
+      <label>Date &amp; time of accident<input type="datetime-local" id="when"></label>
+      <div class="row">
+        <label>Latitude<input id="lat" inputmode="decimal"></label>
+        <label>Longitude<input id="lng" inputmode="decimal"></label>
+      </div>
+      <div class="row">
+        <button type="button" id="gpsBtn">📍 Use my GPS</button>
+        <button type="button" id="demoBtn">Use sample location</button>
+      </div>
+      <p class="mu">Sample police/hospital units are around 28.61, 77.21 (alert range 25 km).</p>
+      <label>Severity
+        <select id="sev"><option>Low</option><option>Medium</option><option>High</option></select>
+      </label>
+      <label>Description<textarea id="desc" rows="3" maxlength="500"></textarea></label>
+      <label>Photos (max 2, images only)<input type="file" id="ph" accept="image/*" multiple></label>
+      <button type="button" id="rb">🎤 Record 10 s note</button>
+      <div class="pv" id="pv"></div>
+      <button class="pri" id="submitBtn">Submit report</button>
+    </div></section>
+
+    <section id="list" hidden></section>
+    <section id="aud" hidden></section>
+  </div>
+</main>
+<div id="toast" role="status"></div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
